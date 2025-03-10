@@ -33,5 +33,22 @@ class Controller{
     //self::newsById($id);
     header('Location:news?id='.id.'#ctable');
 
-    
+    //comments list
+    public static function Comments($newsid){
+        $arr = Comments::getCommentByNewsID($newsid);
+        ViewComments::CommentsByNews($arr);
+        }
+
+    //comments qnt
+    public static function CommentsCount($newsid){
+        $arr = Comments::getCommentsCountByNewsID($newsid);
+        ViewCommments::CommentsCount($arr);
+    }
+
+    //link to comments list
+    public static function CommentsCountWithAncor($newsid){
+        $arr = Comments::getCommentsCountByNewsID($newsid);
+        viewComments::CommentsCountWithAncor($arr);
+    }
+
 }

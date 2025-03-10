@@ -6,4 +6,20 @@ class ViewComments{
         Teie kommentaar: <input type="text" name="comment">
         <input type="submit" value-"Saada"></form>';
     }
+
+    public static function CommentByNews($arr){
+        if ($arr!=null){
+            echo '<table id="ctable"><th>Kommentaar</th><th>Kuupäev</th>';
+            foreach($arr as $value){
+                echo '<tr><td>'.$value['text']."</td><td>".$value['date']."</td></tr>";
+            }
+            echo '</table>';
+            }
+            
+}
+public static funtion CommentsCountWithAncor($value){
+    if($value['count']>0){
+        echo '<b><font color = 'red'>('.$value['count'].')</font></b>'
+    }
+}
 }
