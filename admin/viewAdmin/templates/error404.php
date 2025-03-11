@@ -7,6 +7,8 @@
         <h3>404 ошибка - что это такое?</h3>
         <p>По запрашиваемому url страниа не найдена</p>
     </article>
+
+    
     <?php $content = ob_get_clean(); ?>
     <?php include "viewAdmin/templates/layout.php">;
 </article>
