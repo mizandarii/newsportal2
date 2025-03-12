@@ -18,6 +18,11 @@ elseif($path=='logout')
     //lpgout
     $response = controllerAdmin::logoutAction();
 }
+
+elseif($path == 'logout'){
+    $response=controllerAdminNews::NewsList();
+
+}
 else{
     //page does not exist
     $response = controllerAdmin::error404();
