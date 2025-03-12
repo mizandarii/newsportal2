@@ -19,7 +19,7 @@ elseif($path=='logout')
     $response = controllerAdmin::logoutAction();
 }
 
-elseif($path == 'logout'){
+elseif($path == 'newsAdmin'){
     $response=controllerAdminNews::NewsList();
 
 }
