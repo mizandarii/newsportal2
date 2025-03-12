@@ -28,8 +28,6 @@
                         <a href="newsEdit?id='.$row['id'].'">Edit <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                         <a href="newsDel?id='.$row['id'].'">Delete <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                         </td> ';
-                    
-
                     echo '</tr>';
             }
             ?>
