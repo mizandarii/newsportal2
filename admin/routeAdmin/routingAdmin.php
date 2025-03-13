@@ -21,7 +21,14 @@ elseif($path=='logout')
 
 elseif($path == 'newsAdmin'){
     $response=controllerAdminNews::NewsList();
+}
 
+elseif($path=='newsAdd'){
+    $response=controllerAdminNews::NewsList();
+}
+
+elseif($path == 'newsAssResult'){
+    $response = controllerAdminNews::newsAddResult();
 }
 else{
     //page does not exist
