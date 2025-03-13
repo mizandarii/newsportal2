@@ -31,8 +31,11 @@ class modelAdmin{
                         $logIn=true;
                     }
                 }
+            }
         }
     }
+    }
+}
     return $logIn;
 
     public static function userLogout()
@@ -45,5 +48,3 @@ class modelAdmin{
     return;
 }
 ?>
-}
-}

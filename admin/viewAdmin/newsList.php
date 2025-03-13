@@ -15,7 +15,6 @@
             </tr>
 
             <?php
-
             foreach($arr as $row){
                 echo '<tr>';
                     echo '<td>'.$row['id'].'</td>';
