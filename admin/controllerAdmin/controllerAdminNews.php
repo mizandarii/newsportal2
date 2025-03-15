@@ -25,4 +25,16 @@ class controllAdminNews{
         $test = modelAdminNews::getNewsEdit($id);
         include_once('viewAdmin/newsEditForm.php');
     }
+
+    public static function newsDeleteForm($id){
+        $arr = modelAdminCategory::getCategoryList();
+        $detail = modelAdminNews::getNewsDetail($id);
+        include_once('viewAdmin/newsDeleteForm.php');
+    }
+
+    public static function newsDeleteResult($id){
+        $test=modelAdminNews::getMewsDelete($id);
+        include_once('viewAdmin/newsDeleteForm.php');
+    }
 }
+?>
