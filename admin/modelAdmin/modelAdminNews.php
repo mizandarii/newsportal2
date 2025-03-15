@@ -1,41 +1,42 @@
-<?php ob_start() ?>
+<?php 
+class modelAdminNews{
+    public static function getNewsList(){
+        $query = "SELECT news.*, category.name, users.username from news, category, users WHERE news.category_id=category.id AND news.user_id=users.id ORDER BY 'news', 'id' DESC";
+        $db = new Database();
+        $arr = $db->getAll($query);
+        return $arr; 
+    }
 
-<h2>News list</h2>
 
-<div class="container" style="min-height:400px;">
-    <div style="margin: 20px;">
-        <a class="btn btn-primary" href="newsAdd" role="button">Добвавить новость</a>
-    </div>
-    <div class="col-md-11">
-        <table class="table table-bordered table-responsive">
-            <tr>
-                <th width="10%">ID</th>
-                <th width="70%">Header News</th>
-                <th width="30%"></th>
-            </tr>
+    public static function getNewsAdd(){
+        $test=false;
+        if(isset($_POST['save'])){
+            if(isset($_POST['title']) && isset($_POST['text']) && isset($_POST['idCategory'])){
+                $title=$_POST['title'];
+                $text=$_POST['text'];
+                $idCategory=$_POST['idCategory'];
 
-            <?php
-
-            foreach($arr as $row){
-                echo '<tr>';
-                    echo '<td>'.$row['id'].'</td>';
-
-                    echo '<td><b>Title:</b>'.$row['title'].'<br>';
-                    echo '<b>Category:</b><i>'.$row['title'].'</i>';
-                    echo '<br><b>Author: </b><i>'.$row['username'].'</i>';
-                    echo '</td>';
-                    echo '<td>
-                        <a href="newsEdit?id='.$row['id'].'">Edit <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                        <a href="newsDel?id='.$row['id'].'">Delete <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                        </td> ';
-                    
-
-                    echo '</tr>';
+                $image = addslashes(file_get_contents($_FILES['picture']['tmp_name']));
+                $sql="INSERT into 'news' ('id', 'title', 'text', 'picture', 'category_id', 'user_id') values (null, '$title', '$text', '$image', '$idCategory', '1')";
+                $db = new Database();
+                $item = $db->executeRun($sql);
+                if($item==true){
+                    $test=true;
+                }
+                
             }
-            ?>
-        </table>
-    </div>
-</div>
-<?php $content=ob_get_clean(); ?>
+        }
+        return $test;
+    }
 
-<?php include "viewAdmin/templates/layout.php"; ?>
+
+    public static function getNewsDetail($id){
+        $query = "SELECT news.*, category.name, users.username from news, category, users
+        where news.category_id = category.id and news.user_id = users.id and news.id = ".$id;
+        $db = new Database();
+        $arr = $db->getOne($query);
+        return $arr;
+    }
+
+
+}

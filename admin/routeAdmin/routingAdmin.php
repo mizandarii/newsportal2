@@ -19,9 +19,24 @@ elseif($path=='logout')
     $response = controllerAdmin::logoutAction();
 }
 
-elseif($path == 'logout'){
+elseif($path == 'newsAdmin'){
     $response=controllerAdminNews::NewsList();
+}
 
+elseif($path=='newsAdd'){
+    $response=controllerAdminNews::NewsList();
+}
+
+elseif($path == 'newsAddResult'){
+    $response = controllerAdminNews::newsAddResult();
+}
+
+elseif($path=='newsEdit' && isset($_GET['id'])){
+    $response=controllerAdminNews::newsEditForm($_GET['id']);
+}
+
+elseif($path == 'newsEditResult' && isset($_GET['id'])){
+    $response=controllerAdminNews::newsEditResult($_GET['id']);
 }
 else{
     //page does not exist
