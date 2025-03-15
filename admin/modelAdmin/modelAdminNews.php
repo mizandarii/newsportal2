@@ -38,5 +38,27 @@ class modelAdminNews{
         return $arr;
     }
 
-
+    public static function getNewsEdit($id){
+        $test=false;
+        if(isset($_POST['save'])){
+            if(isset($_POST['title']) && isset($_POST['text/']) && isset($_POST['idCategory'])){
+                $title=$_POST['title'];
+                $text=$_POST['text'];
+                $idCategory=$_POST['idCategory'];
+                $image=$_FILES['picture']['name'];
+                if($image!=""){
+                    $image=addlashes(file_get_contents($_FILES['picture']['tmp_name']));
+                }
+                if(image==''){
+                    $sql="update 'news' set 'title' = '$title', 'text' = '$text', 'picture' = '$image', 'category_id'='$idCategory' where 'news'.'id' =".$id;/
+                }
+                $db = new Database();
+                $item=$db->executeRun($sql);
+                if($item==true){
+                    $test=true;
+                }
+            }
+        }
+        return $test
+    }
 }
