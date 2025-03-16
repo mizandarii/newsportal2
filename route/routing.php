@@ -26,9 +26,9 @@ elseif($path == 'insertcomment' and isset($_GET['comment'], $_GET['id']))
 elseif ($path == 'registerForm'){
     $response = Controller::registerForm();
 }
-elseif($path == 'regirsterAnswer'
+elseif($path == 'regirsterAnswer'){
     $response = Controller::registerUser(); 
-)
+}
 
 else{
     $response = Controller::error404();
