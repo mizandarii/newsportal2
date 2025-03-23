@@ -27,14 +27,14 @@
 
         <?php
         echo '<ul class="nav nav-pills pull-right">
-        <li role= "button">'.$_SESSION["name"].
+        <li role= "button">'.$_SESSION["username"].
             '<a href="logout" style="display: inline;">Выйти <i class="fa fa-sign-out"></i>
         </a></li></ul>';
 
         if (isset($_SESSION["status"]) && $_SESSION["status"]=="admin"){
             echo '<h4?><a href="../" target= blank>WEBSITE</a>';
             echo ' &#187 <a href="./">Start admin</a>';
-            echo ' &#187 <a href="categoryAdmin">Categories</a>';
+            echo ' &#187 <a href="categoryAdmin">News Categories</a>';
             
             echo ' &#187 <a href="newsAdmin">NewsList</a>';
 

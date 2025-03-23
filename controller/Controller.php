@@ -8,7 +8,7 @@ class Controller {
 
     public static function AllCategory() {
         $arr = Category::getAllCategory();
-        include_once 'view/category.php';
+        include_once 'view/category.php'; 
     }
 
     public static function AllNews() {
@@ -22,7 +22,7 @@ class Controller {
     }
 
     public static function NewsByID($id) {
-        $arr = News::getNewsByID($id);  // Исправлено на News
+        $n = News::getNewsByID($id);  // Исправлено на News
         include_once 'view/readnews.php';
     }
 
@@ -45,11 +45,16 @@ public static function error404() {
         ViewComments::CommentsByNews($arr);
     }
 
-    // Количество комментариев
     public static function CommentsCount($newsid) {
-        $arr = Comments::getCommentsCountByNewsID($newsid);
-        ViewComments::CommentsCount($arr);  // Исправлено: правильное имя класса ViewComments
+        if (isset($newsid) && !empty($newsid)) {
+            $arr = Comments::getCommentsCountByNewsID($newsid);
+            ViewComments::CommentsCount($arr);
+        } else {
+            // Обработка случая, когда id не передан или пуст
+            echo "Комментарии отсутствуют.";
+        }
     }
+    
 
     // Ссылка на список комментариев
     public static function CommentsCountWithAncor($newsid) {
@@ -63,7 +68,9 @@ public static function error404() {
     }
 
     public function registerUser() {
-        $result = Register::registerUser();
+        //$result = Register::registerUser();
+        $register = new Register();
+        $result = $register->registerUser();
         include_once('view/answerRegister.php');
     }
 }

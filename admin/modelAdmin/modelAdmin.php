@@ -14,7 +14,7 @@ class modelAdmin{
             "" && $_POST['password'] !=""){
                 $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
                 $password = filter_input(INPUT_POST, 'password');
-                $sql = 'select * from 'users' where 'email' ="'.$email.'"';
+                $sql = 'SELECT * FROM `users` WHERE `email` = "' . $email . '"';
                 $db = new Database();
                 $item = $db->getOne($sql);
 
@@ -34,9 +34,10 @@ class modelAdmin{
             }
         }
     }
-    }
-}
+    
+
     return $logIn;
+}
 
     public static function userLogout()
 {
@@ -46,5 +47,6 @@ class modelAdmin{
     unset($_SESSION['status']);
     session_destroy();
     return;
+}
 }
 ?>

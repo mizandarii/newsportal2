@@ -1,5 +1,5 @@
 <?php
-ob_start
+ob_start();
 ?>
 <h1> Uudised(kategorii)</h1>
 <br>

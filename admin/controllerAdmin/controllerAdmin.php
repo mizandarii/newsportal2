@@ -5,9 +5,9 @@ class controllerAdmin{
     }
     //admin auth form
     public static function loginAction(){
-        $slogIn = modelAdmin::userAuthentication();
-        if(isset($logIn) ana $logIn == true){
-            include_once('viewAdmin/startAdmin.php');
+        $logIn = modelAdmin::userAuthentication();
+        if(isset($logIn) and $logIn == true){
+            include_once('viewAdmin/templates/startAdmin.php');
         }
         else{
             $_SESSION['errorString']='Неправильное имя пользователя и пароль';
@@ -21,6 +21,6 @@ class controllerAdmin{
     }
 
     public static function error404(){
-        include_once('viewAdmin/error404.php');
+        include_once('viewAdmin/templates/error404.php');
     }
 }

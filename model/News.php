@@ -24,8 +24,8 @@ class News{
     public static function getNewsByID($id){
         $query = "SELECT * from news where id = ".(string)$id;
         $db = new Database();
-        $arr = $db -> getAll($query);
-        return $arr;
+        $n = $db -> getOne($query);
+        return $n;
     }
 
 

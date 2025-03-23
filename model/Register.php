@@ -19,14 +19,21 @@ class Register{
             if($password!=$confirm){
                 $errorString.="Пароли не совпадают<br/>";
             }
-            if(mb_strlen($errprString) == 0)
+            if(mb_strlen($errorString) == 0)
             {
                 $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 $date=Date("Y-m-d");
 
-                $sql="insert into 'users' ('id', 'username', 'email', 'password', 'status', 'registration_date', 'pass') VALUES (null, '$name', '$email', '$passwordHash', 'user', '$date', '$password')";
-                $db = new Database();
-                $item=$db -> executeRun($sql);
+                $sql = "INSERT INTO `users` (`id`, `username`, `email`, `password`, `status`, `registration_date`, `pass`) 
+                VALUES (NULL, '$name', '$email', '$passwordHash', 'user', '$date', '$password')";
+                        $db = new Database();
+                        $item = $db->executeRun($sql);
+                        if ($item) {
+                            $controll = array(0 => true);
+                        } else {
+                            $controll = array(0 => false, 1 => 'Ошибка при добавлении пользователя: ' . $db->getError());
+                        }
+                        
                 if($item)
                     $controll=array(0=>true);
                 else
@@ -40,3 +47,4 @@ class Register{
         return $controll;
     }
 }
+?>

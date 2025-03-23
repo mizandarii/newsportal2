@@ -17,7 +17,7 @@ class modelAdminNews{
                 $idCategory=$_POST['idCategory'];
 
                 $image = addslashes(file_get_contents($_FILES['picture']['tmp_name']));
-                $sql="INSERT into 'news' ('id', 'title', 'text', 'picture', 'category_id', 'user_id') values (null, '$title', '$text', '$image', '$idCategory', '1')";
+                $sql="INSERT into `news` (`id`, `title`, `text`, `picture`, `category_id`, `user_id`) values (null, '$title', '$text', '$image', '$idCategory', '1')";
                 $db = new Database();
                 $item = $db->executeRun($sql);
                 if($item==true){
@@ -41,16 +41,21 @@ class modelAdminNews{
     public static function getNewsEdit($id){
         $test=false;
         if(isset($_POST['save'])){
-            if(isset($_POST['title']) && isset($_POST['text/']) && isset($_POST['idCategory'])){
+            if(isset($_POST['title']) && isset($_POST['text']) && isset($_POST['idCategory'])){
                 $title=$_POST['title'];
                 $text=$_POST['text'];
-                $idCategory=$_POST['idCategory'];
+                $category_id=$_POST['idCategory'];
+
                 $image=$_FILES['picture']['name'];
                 if($image!=""){
-                    $image=addlashes(file_get_contents($_FILES['picture']['tmp_name']));
+                    $image=addslashes(file_get_contents($_FILES['picture']['tmp_name']));
                 }
-                if(image==''){
-                    $sql="update 'news' set 'title' = '$title', 'text' = '$text', 'picture' = '$image', 'category_id'='$idCategory' where 'news'.'id' =".$id;/
+                if($image==''){
+                    $sql="update `news` set `title` = '$title', `text` = '$text', `picture` = '$image', `category_id`='$category_id' where `news`.`id` =".$id;
+                }
+                else{
+                    $sql = "update `news` set `title` = '$title', `text` = '$text', 
+                    `picture` = '$image', `category_id`='$category_id' where `news`.`id`=".$id;
                 }
                 $db = new Database();
                 $item=$db->executeRun($sql);
@@ -59,15 +64,15 @@ class modelAdminNews{
                 }
             }
         }
-        return $test
+        return $test;
     }
 
     public static function getNewsDelete($id){
         $test=false;
-        id(isset($_POST['save'])){
-            $sql="delete from 'news' where 'news'.'id' = ".$id;
+        if(isset($_POST['save'])){
+            $sql="delete from `news` where `news`.`id` = ".$id;
             $db = new Database();
-            $item=$db->executeRun(sql);
+            $item=$db->executeRun($sql);
             if($item==true){
                 $test=true;
             }

@@ -5,7 +5,7 @@ $num = substr_count($host, '/');
 $path = explode('/',$host)[$num];
 
 if($path == '' OR $path == 'index' OR $path == 'index.php'){
-    $response = Controller::StrartSite();
+    $response = Controller::StartSite();
 }
 
 elseif($path == 'all') {
@@ -24,10 +24,14 @@ elseif($path == 'insertcomment' and isset($_GET['comment'], $_GET['id']))
 }
 
 elseif ($path == 'registerForm'){
-    $response = Controller::registerForm();
+    //$response = Controller::registerForm();
+    $controller = new Controller();
+    $response = $controller->registerForm();
 }
-elseif($path == 'regirsterAnswer'){
-    $response = Controller::registerUser(); 
+elseif($path == 'registerAnswer'){
+    $controller = new Controller();
+    $response = $controller->registerUser();
+    //$response = Controller::registerUser(); 
 }
 
 else{

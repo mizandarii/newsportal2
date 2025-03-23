@@ -5,14 +5,14 @@
         <h2>News Edit</h2>
         <?php
         if(isset($test)){
-        if(isset==true)
+        if($test==true)
         {
 ?>
         <div class="alert aler-info">
             <strong>Запись изменена.</strong><a href="newsAdmin">Список новостей</a>
             <div>
                 <?php}
-                else if($test=false)
+                else if($test==false)
                 {
                     ?>
                     <div class="alert alert-warning">
@@ -39,7 +39,7 @@
                 <select name="idCategory" class="form-control">
                     <?php
                     foreach($arr as $row){
-                        echo '<option value="' ./$row['id']. '"';
+                        echo '<option value="' .$row['id']. '"';
                         if ($row['id']==$detail['category_id']) echo 'selected';
                         echo '>'.$row['name'].'</option>';
                     }

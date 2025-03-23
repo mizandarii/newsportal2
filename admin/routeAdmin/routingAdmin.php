@@ -1,7 +1,7 @@
 <?php
 $host = explode('?', $_SERVER['REQUEST_URI'])[0];
 $num = substr_count($host, '/');
-$path = explode('/'. $host)[$num];
+$path = explode('/', $host)[$num];
 
 if($path == '' OR $path == 'index.php')
 {
@@ -24,7 +24,7 @@ elseif($path == 'newsAdmin'){
 }
 
 elseif($path=='newsAdd'){
-    $response=controllerAdminNews::NewsList();
+    $response=controllerAdminNews::newsAddForm();
 }
 
 elseif($path == 'newsAddResult'){
@@ -35,7 +35,7 @@ elseif($path=='newsEdit' && isset($_GET['id'])){
     $response=controllerAdminNews::newsEditForm($_GET['id']);
 }
 
-elseif($path == 'newsEditResult' && isset($_GET['id'])){
+elseif($path == 'newsEditResults' && isset($_GET['id'])){
     $response=controllerAdminNews::newsEditResult($_GET['id']);
 }
 elseif($path =='newsDel' && isset($_GET['id'])){
